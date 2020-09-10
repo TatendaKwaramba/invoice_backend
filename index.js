@@ -20,11 +20,10 @@ var sendEmail = (toEmail, fromEmail, subject, body, attachement) => {
 
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
-      host: "smtp.mailtrap.io",
-      port: 2525,
+      service: 'gmail',
       auth: {
-        user: "96836ffb71d2e5",
-        pass: "dc8467008d9155"
+        user: 'kwarambaandy@gmail.com',
+        pass: 'tatenda1996' // naturally, replace both with your real credentials or an application-specific password
       }
     });
   
