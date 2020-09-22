@@ -55,7 +55,7 @@ var sendEmail = (toEmail, fromEmail, subject, body, attachement) => {
 // Post - pdf generation
 
 app.post('/create-pdf', (req, res) => {
-    pdf.create(pdfTemp(req.body), {}).toFile('result.pdf', (err) => {
+    pdf.create(pdfTemp(req.body), {}).toFile('invoice.pdf', (err) => {
         if(err){
             res.send(Promise.reject());
         }
@@ -63,8 +63,8 @@ app.post('/create-pdf', (req, res) => {
         let subject = "Email From Jugaad Invoice"
         let body = "Please find the invoice attachement below" 
         let attachement = [{
-            filename: 'result.pdf',
-            path: `${__dirname}/result.pdf`
+            filename: 'invoice.pdf',
+            path: `${__dirname}/invoice.pdf`
         }]
         sendEmail(toEmail, fromEmail, subject, body, attachement);
         res.send(Promise.resolve());
@@ -72,7 +72,7 @@ app.post('/create-pdf', (req, res) => {
 });
 
 app.post('/download-pdf', (req, res) => {
-  pdf.create(pdfTemp(req.body), {}).toFile('result.pdf', (err) => {
+  pdf.create(pdfTemp(req.body), {}).toFile('invoice.pdf', (err) => {
       if(err){
           res.send(Promise.reject());
       }
@@ -83,7 +83,7 @@ app.post('/download-pdf', (req, res) => {
 // Get
 
 app.get('/fetch-pdf', (req, res) => {
-    res.sendFile(`${__dirname}/result.pdf`)
+    res.sendFile(`${__dirname}/invoice.pdf`)
 });
 
 app.listen(port, () => console.log(`Listen on port ${port}`));
